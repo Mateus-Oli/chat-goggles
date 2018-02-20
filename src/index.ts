@@ -2,8 +2,6 @@ import { socketServer } from 'socket-goggles';
 import { remove, register, chat } from './services/chat';
 import { createServer } from 'http';
 
-(console as any).clear();
-
 const PORT = process.env.PORT || process.env.OPENSHIFT_NODEJS_PORT || 8080;
 
 const server = socketServer(createServer((_, res) => {
