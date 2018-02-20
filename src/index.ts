@@ -1,8 +1,5 @@
-import 'reflect-metadata';
-
 import { socketServer } from 'socket-goggles';
 import { remove, register, chat } from './services/chat';
-import { createServer } from 'http';
 
 (console as any).clear();
 
