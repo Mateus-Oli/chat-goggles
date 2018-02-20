@@ -4,12 +4,14 @@ import { createServer } from 'http';
 
 (console as any).clear();
 
-
+const PORT = process.env.PORT || process.env.OPENSHIFT_NODEJS_PORT || 8080;
 
 const server = socketServer(createServer((_, res) => {
+
   res.setHeader('Content-Type', 'application/json');
   res.write(JSON.stringify('Only WebSocket'));
   res.end();
+
 }))(socket => {
 
   register(socket);
