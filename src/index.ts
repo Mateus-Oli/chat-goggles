@@ -1,9 +1,16 @@
 import { socketServer } from 'socket-goggles';
 import { remove, register, chat } from './services/chat';
+import { createServer } from 'http';
 
 (console as any).clear();
 
-const server = socketServer()(socket => {
+
+
+const server = socketServer(createServer((_, res) => {
+  res.setHeader('Content-Type', 'application/json');
+  res.write(JSON.stringify('Only WebSocket'));
+  res.end();
+}))(socket => {
 
   register(socket);
 
@@ -11,4 +18,4 @@ const server = socketServer()(socket => {
   socket.onClose(() => remove(socket));
 });
 
-server.listen(8080, () => console.log('Chat'));
+server.listen(process.env.PORT || 8080, () => console.log('Chat'));
